@@ -1,0 +1,27 @@
+{
+  "name": "teams-ctrf",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "teams-ctrf": "./dist/cli.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "author": "Matthew Thomas",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.4.5",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/yargs": "^17.0.32",
+    "typescript": "^5.4.5"
+  }
+}
