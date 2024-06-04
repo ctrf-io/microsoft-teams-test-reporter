@@ -2,6 +2,8 @@
 
 > Send Microsoft Teams message with test result from popular testing frameworks
 
+![Example view](assets/results.png)
+
 ⭐ **If you find this project useful, consider giving it a GitHub star** ⭐
 
 It means a lot to us and helps us grow this open source library.
@@ -58,11 +60,15 @@ To send the test results summary to Teams:
 npx teams-ctrf results /path/to/ctrf-report.json
 ```
 
+![Results view](assets/results.png)
+
 To send flaky test report to Teams:
 
 ```sh
 npx teams-ctrf flaky /path/to/ctrf-report.json
 ```
+
+![Flaky view](assets/flaky.png)
 
 ### Send Only on Failures
 
