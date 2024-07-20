@@ -76,7 +76,7 @@ npx teams-ctrf results /path/to/ctrf-file.json -f
 
 - `--onFailOnly, -f`: Send notification only if there are failed tests.
 
-- ## Merge reports
+## Merge reports
 
 You can merge reports if your chosen reporter generates multiple reports through design, parallelisation or otherwise.
 
