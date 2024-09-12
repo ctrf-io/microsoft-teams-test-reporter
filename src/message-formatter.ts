@@ -1,4 +1,4 @@
-import { CtrfReport } from '../types/ctrf';
+import { CtrfReport, CtrfEnvironment, CtrfTest } from '../types/ctrf';
 
 export const formatResultsMessage = (ctrf: CtrfReport): object => {
   const { summary, environment } = ctrf.results;
@@ -150,6 +150,75 @@ export const formatFlakyTestsMessage = (ctrf: CtrfReport): object | null => {
     "sections": sections
   };
 };
+
+
+export const formatAiSummaryForTest = (test: CtrfTest, environment: CtrfEnvironment): object | null => {
+  let title = "AI Test Summary";
+  let missingEnvProperties: string[] = [];
+
+  if (!test.ai) {
+    return null;
+  }
+
+  let buildInfo = "No build information provided";
+  if (environment) {
+    const { buildName, buildNumber, buildUrl } = environment;
+
+    if (buildName && buildNumber) {
+      buildInfo = buildUrl ? `[${buildName} #${buildNumber}](${buildUrl})` : `${buildName} #${buildNumber}`;
+    } else if (buildName || buildNumber) {
+      buildInfo = `${buildName || ''} ${buildNumber || ''}`;
+    }
+
+    if (!buildName) {
+      missingEnvProperties.push('buildName');
+    }
+
+    if (!buildNumber) {
+      missingEnvProperties.push('buildNumber');
+    }
+
+    if (!buildUrl) {
+      missingEnvProperties.push('buildUrl');
+    }
+  } else {
+    missingEnvProperties = ['buildName', 'buildNumber', 'buildUrl'];
+  }
+
+  const sections: any[] = [
+    {
+      activityTitle: title,
+      facts: [
+        { name: "Test Name", value: test.name },
+        { name: "Status", value: "Failed" },
+        { name: "&#x2728; AI Summary", value: test.ai || "No AI summary provided." },
+        { name: "Build", value: buildInfo }
+      ],
+      markdown: true
+    }
+  ];
+
+  if (missingEnvProperties.length > 0) {
+    sections.push({
+      activitySubtitle: `&#x26A0; Missing environment properties: ${missingEnvProperties.join(', ')}. Add these to your CTRF report for a better experience.`,
+      markdown: true
+    });
+  }
+
+  sections.push({
+    text: "[A CTRF plugin](https://github.com/ctrf-io/teams-ctrf)",
+    markdown: true
+  });
+
+  return {
+    "@type": "MessageCard",
+    "@context": "http://schema.org/extensions",
+    "summary": title,
+    "themeColor": "FF0000",
+    "sections": sections
+  };
+};
+
 
 
 export const formatFailedTestsMessage = (ctrf: CtrfReport): string => {
