@@ -41,8 +41,10 @@ export const formatResultsMessage = (ctrf: CtrfReport): object => {
     ? `${failedTests} failed tests`
     : `Passed`;
 
-  const duration = summary.stop - summary.start;
-  const durationText = `Duration: ${new Date(duration * 1000).toISOString().substr(11, 8)}`;
+  const durationInSeconds = (summary.stop - summary.start) / 1000;
+  const durationText = durationInSeconds < 1
+    ? "*Duration:* <1s"
+    : `*Duration:* ${new Date(durationInSeconds * 1000).toISOString().substr(11, 8)}`;
 
   const testSummary = `&#x2705; ${passedTests} | &#x274C; ${failedTests} | &#x23E9; ${skippedTests} | &#x23F3; ${pendingTests} | &#x2753; ${otherTests}`;
 
