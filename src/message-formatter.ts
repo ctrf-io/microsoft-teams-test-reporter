@@ -1,6 +1,6 @@
 import { CtrfReport, CtrfEnvironment, CtrfTest } from '../types/ctrf';
 
-export const formatResultsMessage = (ctrf: CtrfReport): object => {
+export const formatResultsMessage = (ctrf: CtrfReport, failOnly: boolean = false): object => {
   const { summary, environment } = ctrf.results;
   const passedTests = summary.passed;
   const failedTests = summary.failed;
