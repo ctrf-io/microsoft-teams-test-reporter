@@ -27,7 +27,7 @@ export async function sendFlakyResultsToTeams(
     options: Options = {}
 ): Promise<void> {
     if (options.token) {
-        process.env.Teams_WEBHOOK_URL = options.token;
+        process.env.TEAMS_WEBHOOK_URL = options.token;
     }
 
     const message = formatFlakyTestsMessage(report);
@@ -44,7 +44,7 @@ export async function sendAISummaryToTeams(
     options: Options = {}
 ): Promise<void> {
     if (options.token) {
-        process.env.Teams_WEBHOOK_URL = options.token;
+        process.env.TEAMS_WEBHOOK_URL = options.token;
     }
 
     for (const test of report.results.tests) {
