@@ -5,26 +5,28 @@ import { CtrfReport } from '../types/ctrf';
 
 export async function sendTestResultsToTeams(
     report: CtrfReport,
-    options: Options = {}
+    options: Options = {},
+    logs: boolean = false
 ): Promise<void> {
     if (options.token) {
         process.env.TEAMS_WEBHOOK_URL = options.token;
     }
 
     if (options.onFailOnly && report.results.summary.failed === 0) {
-        console.log('No failed tests. Message not sent.');
+        logs && console.log('No failed tests. Message not sent.');
         return;
     }
 
     const message = formatResultsMessage(report);
 
     await sendTeamsMessage(message);
-    console.log('Test results message sent to Teams.');
+    logs && console.log('Test results message sent to Teams.');
 }
 
 export async function sendFlakyResultsToTeams(
     report: CtrfReport,
-    options: Options = {}
+    options: Options = {},
+    logs: boolean = false
 ): Promise<void> {
     if (options.token) {
         process.env.TEAMS_WEBHOOK_URL = options.token;
@@ -33,15 +35,16 @@ export async function sendFlakyResultsToTeams(
     const message = formatFlakyTestsMessage(report);
     if (message) {
         await sendTeamsMessage(message);
-        console.log('Flaky tests message sent to Teams.');
+        logs && console.log('Flaky tests message sent to Teams.');
     } else {
-        console.log('No flaky tests detected. No message sent.');
+        logs && console.log('No flaky tests detected. No message sent.');
     }
 }
 
 export async function sendAISummaryToTeams(
     report: CtrfReport,
-    options: Options = {}
+    options: Options = {},
+    logs: boolean = false
 ): Promise<void> {
     if (options.token) {
         process.env.TEAMS_WEBHOOK_URL = options.token;
@@ -52,9 +55,8 @@ export async function sendAISummaryToTeams(
             const message = formatAiSummaryForTest(test, report.results.environment || {});
             if (message) {
                 await sendTeamsMessage(message);
-                console.log(`AI summary message sent to Teams for ${test.name}.`);
+                logs && console.log(`AI summary message sent to Teams for ${test.name}.`);
             }
         }
     }
 }
-
