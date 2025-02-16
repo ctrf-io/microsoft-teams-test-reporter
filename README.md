@@ -23,6 +23,7 @@ A Microsoft Teams test reporting tool that supports all major testing frameworks
 <p style="font-size: 14px; margin: 1rem 0;">
 Maintained by <a href="https://github.com/ma11hewthomas">Matthew Thomas</a><br/>
 Contributions are very welcome! <br/>
+Explore more <a href="https://www.ctrf.io/integrations">integrations</a>
 </p>
 </div>
 
