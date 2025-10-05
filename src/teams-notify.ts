@@ -30,7 +30,7 @@ export const sendTeamsMessage = (message: object): Promise<void> => {
                 if (res.statusCode === 200 || res.statusCode === 202) {
                     resolve();
                 } else {
-                    reject(new Error(`Failed to send message, status code: ${res.statusCode}, response: ${response}`));
+                    reject(new Error(`Failed to send message, status code: ${res.statusCode}, response: ${response}, data: ${data}`));
                 }
             });
         });

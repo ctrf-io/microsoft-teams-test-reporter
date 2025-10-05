@@ -279,218 +279,218 @@ export const formatResultsAdaptiveCard = (ctrf: CtrfReport): object => {
   }
 
   return {
-    type: 'message',
-    attachments: [
+    "type": "message",
+    "attachments": [
       {
-        contentType: 'application/vnd.microsoft.card.adaptive',
-        content: {
-          $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-          type: 'AdaptiveCard',
-          version: '1.5',
-          body: [
+        "contentType": "application/vnd.microsoft.card.adaptive",
+        "content": {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.5",
+          "body": [
             {
-              type: 'Container',
-              items: [
+              "type": "Container",
+              "items": [
                 {
-                  type: 'TextBlock',
-                  size: 'Large',
-                  weight: 'Bolder',
-                  text: `${testStatusMapping[titleStatus].emoji}  ${appTitle} Test Results`,
-                  wrap: true
+                  "type": "TextBlock",
+                  "size": "Large",
+                  "weight": "Bolder",
+                  "text": `${testStatusMapping[titleStatus].emoji}  ${appTitle} Test Results`,
+                  "wrap": true
                 }
               ],
-              style: testStatusMapping[titleStatus].style,
-              bleed: true
+              "style": testStatusMapping[titleStatus].style,
+              "bleed": true
             },
             {
-              type: 'ColumnSet',
-              columns: [
+              "type": "ColumnSet",
+              "columns": [
                 {
-                  type: 'Column',
-                  width: '100px',
-                  items: [
+                  "type": "Column",
+                  "width": "100px",
+                  "items": [
                     {
-                      title: 'Summary',
-                      data: [
+                      "title": "Summary",
+                      "data": [
                         {
-                          legend: 'Passed',
-                          color: testStatusMapping['passed'].style,
-                          value: passedTests
+                          "legend": "Passed",
+                          "color": testStatusMapping['passed'].style,
+                          "value": passedTests
                         },
                         {
-                          legend: 'Failed',
-                          color: testStatusMapping['failed'].style,
-                          value: failedTests
+                          "legend": "Failed",
+                          "color": testStatusMapping['failed'].style,
+                          "value": failedTests
                         },
                         {
-                          legend: 'Skipped',
-                          color: testStatusMapping['skipped'].style,
-                          value: skippedTests
+                          "legend": "Skipped",
+                          "color": testStatusMapping['skipped'].style,
+                          "value": skippedTests
                         },
                         {
-                          legend: 'Pending',
-                          color: testStatusMapping['pending'].style,
-                          value: pendingTests
+                          "legend": "Pending",
+                          "color": testStatusMapping['pending'].style,
+                          "value": pendingTests
                         },
                         {
-                          legend: 'Other',
-                          color: testStatusMapping['other'].style,
-                          value: otherTests
+                          "legend": "Other",
+                          "color": testStatusMapping['other'].style,
+                          "value": otherTests
                         }
                       ],
-                      type: 'Chart.Donut'
+                      "type": "Chart.Donut"
                     }
                   ]
                 },
                 {
-                  type: 'Column',
-                  width: 'stretch',
-                  verticalContentAlignment: 'center',
-                  items: [
+                  "type": "Column",
+                  "width": "stretch",
+                  "verticalContentAlignment": "center",
+                  "items": [
                     {
-                      type: 'ColumnSet',
-                      columns: [
+                      "type": "ColumnSet",
+                      "columns": [
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `Summary:`,
-                              weight: 'Bolder'
+                              "type": "TextBlock",
+                              "text": `Summary:`,
+                              "weight": "Bolder"
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${
+                              "type": "TextBlock",
+                              "text": `${
                                 testStatusMapping['passed'].emoji
                               } ${String(passedTests)}`,
-                              color: testStatusMapping['passed'].style,
-                              weight: 'Bolder',
-                              wrap: true
+                              "color": testStatusMapping['passed'].style,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${
+                              "type": "TextBlock",
+                              "text": `${
                                 testStatusMapping['failed'].emoji
                               } ${String(failedTests)}`,
-                              color: testStatusMapping['failed'].style,
-                              weight: 'Bolder',
-                              wrap: true
+                              "color": testStatusMapping['failed'].style,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${
+                              "type": "TextBlock",
+                              "text": `${
                                 testStatusMapping['skipped'].emoji
                               } ${String(skippedTests)}`,
-                              color: testStatusMapping['skipped'].style,
-                              weight: 'Bolder',
-                              wrap: true
+                              "color": testStatusMapping['skipped'].style,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${
+                              "type": "TextBlock",
+                              "text": `${
                                 testStatusMapping['pending'].emoji
                               } ${String(pendingTests)}`,
-                              color: testStatusMapping['pending'].style,
-                              weight: 'Bolder',
-                              wrap: true
+                              "color": testStatusMapping['pending'].style,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${
+                              "type": "TextBlock",
+                              "text": `${
                                 testStatusMapping['other'].emoji
                               } ${String(otherTests)}`,
-                              color: testStatusMapping['other'].style,
-                              weight: 'Bolder',
-                              wrap: true
+                              "color": testStatusMapping['other'].style,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         }
                       ]
                     },
                     {
-                      type: 'ColumnSet',
-                      columns: [
+                      "type": "ColumnSet",
+                      "columns": [
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: 'Results:',
-                              weight: 'Bolder',
-                              wrap: true
+                              "type": "TextBlock",
+                              "text": "Results:",
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${resultText(failedTests)}`,
-                              weight: 'Bolder',
-                              wrap: true
+                              "type": "TextBlock",
+                              "text": `${resultText(failedTests)}`,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         }
                       ]
                     },
                     {
-                      type: 'ColumnSet',
-                      columns: [
+                      "type": "ColumnSet",
+                      "columns": [
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: 'Duration:',
-                              weight: 'Bolder',
-                              wrap: true
+                              "type": "TextBlock",
+                              "text": "Duration:",
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         },
                         {
-                          type: 'Column',
-                          width: 'automatic',
-                          items: [
+                          "type": "Column",
+                          "width": "automatic",
+                          "items": [
                             {
-                              type: 'TextBlock',
-                              text: `${duration(summary.start, summary.stop)}`,
-                              weight: 'Bolder',
-                              wrap: true
+                              "type": "TextBlock",
+                              "text": `${duration(summary.start, summary.stop)}`,
+                              "weight": "Bolder",
+                              "wrap": true
                             }
                           ]
                         }
@@ -501,12 +501,12 @@ export const formatResultsAdaptiveCard = (ctrf: CtrfReport): object => {
               ]
             }
           ],
-          actions: buildInfo
+          "actions": buildInfo
             ? [
                 {
-                  type: 'Action.OpenUrl',
-                  title: buildTitle,
-                  url: buildInfo
+                  "type": "Action.OpenUrl",
+                  "title": buildTitle,
+                  "url": buildInfo
                 }
               ]
             : []
