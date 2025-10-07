@@ -9,14 +9,14 @@ export const sendTeamsMessage = (message: object): Promise<void> => {
 
     return new Promise((resolve, reject) => {
         const url = new URL(teamsWebhookUrl);
-        const data = JSON.stringify(message);
+        const data = new TextEncoder().encode(JSON.stringify(message));
 
         const options = {
             hostname: url.hostname,
             path: url.pathname + url.search,
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Content-Length': data.length,
             },
         };
