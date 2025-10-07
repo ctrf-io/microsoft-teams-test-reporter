@@ -21,9 +21,11 @@ A Microsoft Teams test reporting tool that supports all major testing frameworks
 </div>
 
 <p style="font-size: 14px; margin: 1rem 0;">
-Maintained by <a href="https://github.com/ma11hewthomas">Matthew Thomas</a><br/>
+
 Contributions are very welcome! <br/>
-Explore more <a href="https://www.ctrf.io/integrations">integrations</a>
+Explore more <a href="https://www.ctrf.io/integrations">integrations</a> <br/>
+We’d love your feedback, share it anonymously <a href="https://app.formbricks.com/s/cmefs524mhlh1tl01gkpvefrb">here</a>.
+
 </p>
 </div>
 
