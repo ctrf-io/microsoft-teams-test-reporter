@@ -1,6 +1,6 @@
 {
   "name": "teams-ctrf",
-  "version": "0.0.7-next-5",
+  "version": "0.0.7-next-6",
   "description": "Send test results messages to Microsoft Teams",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
