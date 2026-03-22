@@ -67,7 +67,7 @@ You might want to store the webhook URL as a secret.
 To send the test results summary to Teams:
 
 ```sh
-npx teams-ctrf@latest results /path/to/ctrf-report.json
+npx teams-ctrf@next results /path/to/ctrf-report.json
 ```
 
 ![Results view](assets/results.png)
@@ -75,7 +75,7 @@ npx teams-ctrf@latest results /path/to/ctrf-report.json
 Or send adaptive cards to teams with the --useAdaptiveCard option:
 
 ```sh
-npx teams-ctrf@latest results /path/to/ctrf-report.json --useAdaptiveCard
+npx teams-ctrf@next results /path/to/ctrf-report.json --useAdaptiveCard
 ```
 
 ![Passed adaptive card](assets/adaptive-card-passed.png)
@@ -85,7 +85,7 @@ npx teams-ctrf@latest results /path/to/ctrf-report.json --useAdaptiveCard
 To send flaky test report to Teams:
 
 ```sh
-npx teams-ctrf@latest flaky /path/to/ctrf-report.json
+npx teams-ctrf@next flaky /path/to/ctrf-report.json
 ```
 
 ![Flaky view](assets/flaky.png)
@@ -93,7 +93,7 @@ npx teams-ctrf@latest flaky /path/to/ctrf-report.json
 To send ai test summary for failed tests to Teams:
 
 ```sh
-npx teams-ctrf@latest ai /path/to/ctrf-report.json
+npx teams-ctrf@next ai /path/to/ctrf-report.json
 ```
 
 ### Send Only on Failures
@@ -101,13 +101,13 @@ npx teams-ctrf@latest ai /path/to/ctrf-report.json
 To send the test results summary to Teams only if there are failed tests, use the `--onFailOnly` option:
 
 ```sh
-npx teams-ctrf@latest results /path/to/ctrf-file.json --onFailOnly
+npx teams-ctrf@next results /path/to/ctrf-file.json --onFailOnly
 ```
 
 or using the alias:
 
 ```sh
-npx teams-ctrf@latest results /path/to/ctrf-file.json -f
+npx teams-ctrf@next results /path/to/ctrf-file.json -f
 ```
 
 ## Options
