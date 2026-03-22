@@ -51,15 +51,24 @@ export const formatResultsMessage = (ctrf: CtrfReport, failOnly: boolean = false
 
   const testSummary = `&#x2705; ${passedTests} | &#x274C; ${failedTests} | &#x23E9; ${skippedTests} | &#x23F3; ${pendingTests} | &#x2753; ${otherTests}`;
 
+  const jiraIssueUrl = (ctrf.results.extra as Record<string, unknown>)?.jiraIssueUrl as string | undefined;
+  const jiraIssueKey = (ctrf.results.extra as Record<string, unknown>)?.jiraIssue as string | undefined;
+
+  const facts: any[] = [
+    { name: "Test Summary", value: testSummary },
+    { name: "Results", value: resultText(failedTests) },
+    { name: "Duration", value: `*Duration:* ${duration(summary.start, summary.stop)}` },
+    { name: "Build", value: buildInfo }
+  ];
+
+  if (jiraIssueUrl) {
+    facts.push({ name: "Jira Issue", value: jiraIssueKey ? `[${jiraIssueKey}](${jiraIssueUrl})` : `[View Jira Issue](${jiraIssueUrl})` });
+  }
+
   const sections: any[] = [
     {
       activityTitle: title,
-      facts: [
-        { name: "Test Summary", value: testSummary },
-        { name: "Results", value: resultText(failedTests) },
-        { name: "Duration", value: `*Duration:* ${duration(summary.start, summary.stop)}` },
-        { name: "Build", value: buildInfo }
-      ],
+      facts,
       markdown: true
     }
   ];
@@ -123,14 +132,23 @@ export const formatFlakyTestsMessage = (ctrf: CtrfReport): object | null => {
 
   const flakyTestsText = flakyTests.map(test => `- ${test.name}`).join('\n');
 
+  const jiraFlakyIssueUrl = (ctrf.results.extra as Record<string, unknown>)?.jiraFlakyIssueUrl as string | undefined;
+  const jiraFlakyIssueKey = (ctrf.results.extra as Record<string, unknown>)?.jiraFlakyIssue as string | undefined;
+
+  const flakyFacts: any[] = [
+    { name: "&#x1F342; Flaky Tests Detected" },
+    { name: "Flaky Tests", value: flakyTestsText },
+    { name: "Build", value: buildInfo }
+  ];
+
+  if (jiraFlakyIssueUrl) {
+    flakyFacts.push({ name: "Jira Issue", value: jiraFlakyIssueKey ? `[${jiraFlakyIssueKey}](${jiraFlakyIssueUrl})` : `[View Jira Issue](${jiraFlakyIssueUrl})` });
+  }
+
   const sections: any[] = [
     {
       activityTitle: title,
-      facts: [
-        { name: "&#x1F342; Flaky Tests Detected" },
-        { name: "Flaky Tests", value: flakyTestsText },
-        { name: "Build", value: buildInfo }
-      ],
+      facts: flakyFacts,
       markdown: true
     }
   ];
@@ -259,6 +277,9 @@ export const formatResultsAdaptiveCard = (ctrf: CtrfReport): object => {
       buildInfo = buildUrl;
     }
   }
+
+  const jiraIssueUrl = (ctrf.results.extra as Record<string, unknown>)?.jiraIssueUrl as string | undefined;
+  const jiraIssueKey = (ctrf.results.extra as Record<string, unknown>)?.jiraIssue as string | undefined;
 
   const testStatusMapping: Record<
     'passed' | 'failed' | 'skipped' | 'pending' | 'other',
@@ -505,15 +526,18 @@ export const formatResultsAdaptiveCard = (ctrf: CtrfReport): object => {
               ]
             }
           ],
-          "actions": buildInfo
-            ? [
-                {
-                  "type": "Action.OpenUrl",
-                  "title": buildTitle,
-                  "url": buildInfo
-                }
-              ]
-            : []
+          "actions": [
+            ...(buildInfo ? [{
+              "type": "Action.OpenUrl",
+              "title": buildTitle,
+              "url": buildInfo
+            }] : []),
+            ...(jiraIssueUrl ? [{
+              "type": "Action.OpenUrl",
+              "title": jiraIssueKey ? `Jira: ${jiraIssueKey}` : "View Jira Issue",
+              "url": jiraIssueUrl
+            }] : [])
+          ]
         }
       }
     ]
