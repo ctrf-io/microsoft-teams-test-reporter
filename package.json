@@ -29,7 +29,7 @@
   "license": "MIT",
   "dependencies": {
     "ctrf": "^0.2.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
