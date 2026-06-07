@@ -40,6 +40,6 @@
 		"@biomejs/biome": "2.4.16",
 		"@types/node": "25.9.2",
 		"@types/yargs": "17.0.35",
-		"typescript": "5.9.3"
+		"typescript": "6.0.3"
 	}
 }
