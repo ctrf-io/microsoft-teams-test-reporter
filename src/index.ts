@@ -1,7 +1,11 @@
-import { sendTestResultsToTeams, sendFlakyResultsToTeams, sendAISummaryToTeams } from './teams-reporter';
+import {
+	sendTestResultsToTeams,
+	sendFlakyResultsToTeams,
+	sendAISummaryToTeams,
+} from "./teams-reporter";
 
 export {
-    sendTestResultsToTeams,
-    sendFlakyResultsToTeams,
-    sendAISummaryToTeams
+	sendTestResultsToTeams,
+	sendFlakyResultsToTeams,
+	sendAISummaryToTeams,
 };
