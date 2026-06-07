@@ -1,39 +1,45 @@
 {
-  "name": "teams-ctrf",
-  "version": "0.0.7-next-6",
-  "description": "Send test results messages to Microsoft Teams",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc -p .",
-    "all": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "teams-ctrf": "./dist/cli.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ctrf-io/microsoft-teams-test-reporter.git"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
-  "homepage": "https://ctrf.io",
-  "files": [
-    "dist/",
-    "README.md"
-  ],
-  "author": "Matthew Thomas",
-  "license": "MIT",
-  "dependencies": {
-    "ctrf": "^0.2.0",
-    "yargs": "^18.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^25.5.0",
-    "@types/yargs": "^17.0.32",
-    "typescript": "^5.4.5"
-  }
+	"name": "teams-ctrf",
+	"version": "0.0.7-next-6",
+	"description": "Send test results messages to Microsoft Teams",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc -p .",
+		"all": "npm run build && npm run check",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "biome lint --write . --unsafe",
+		"lint:check": "biome lint .",
+		"format": "biome format --write .",
+		"format:check": "biome format .",
+		"check": "biome check ."
+	},
+	"bin": {
+		"teams-ctrf": "./dist/cli.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ctrf-io/microsoft-teams-test-reporter.git"
+	},
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"homepage": "https://ctrf.io",
+	"files": [
+		"dist/",
+		"README.md"
+	],
+	"author": "Matthew Thomas",
+	"license": "MIT",
+	"dependencies": {
+		"ctrf": "0.2.1",
+		"yargs": "18.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.16",
+		"@types/node": "25.9.2",
+		"@types/yargs": "17.0.35",
+		"typescript": "6.0.3"
+	}
 }
