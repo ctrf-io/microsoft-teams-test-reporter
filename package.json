@@ -47,7 +47,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"ctrf": "0.2.1",
-		"yargs": "18.0.0"
+		"yargs": "18.1.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.2",
