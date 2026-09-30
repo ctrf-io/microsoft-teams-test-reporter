@@ -46,7 +46,7 @@
 	"author": "Matthew Thomas",
 	"license": "MIT",
 	"dependencies": {
-		"ctrf": "0.2.1",
+		"ctrf": "0.3.0",
 		"yargs": "18.1.0"
 	},
 	"devDependencies": {
