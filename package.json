@@ -46,7 +46,7 @@
 	"author": "Matthew Thomas",
 	"license": "MIT",
 	"dependencies": {
-		"ctrf": "0.3.0",
+		"ctrf": "0.4.0",
 		"yargs": "18.1.0"
 	},
 	"devDependencies": {
@@ -54,9 +54,9 @@
 		"@d2t/vitest-ctrf-json-reporter": "1.3.0",
 		"@types/node": "26.6.3",
 		"@types/yargs": "17.0.35",
-		"@vitest/coverage-v8": "4.1.8",
+		"@vitest/coverage-v8": "4.1.11",
 		"tsup": "8.5.1",
 		"typescript": "6.0.3",
-		"vitest": "4.1.8"
+		"vitest": "4.1.11"
 	}
 }
