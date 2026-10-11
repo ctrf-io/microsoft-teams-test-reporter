@@ -1,3 +1,7 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { parseCtrfFile } from "../src/ctrf-parser";
 import type { CtrfReport } from "../types/ctrf";
 import {
 	formatAiSummaryForTest,
@@ -55,11 +59,83 @@ const createReport = (): CtrfReport =>
 
 describe("message formatter", () => {
 	it("formats Teams result message cards", () => {
-		const message = formatResultsMessage(createReport()) as {
+		const original = createReport();
+		const report = structuredClone(original);
+		Object.assign(report, { reportId: "report", runId: "run" });
+		report.results.environment = {
+			...report.results.environment,
+			shardId: "one",
+		};
+		Object.assign(report.results.tests[1], {
+			testId: "logical",
+			executionId: "execution",
+			attemptId: "final-attempt",
+			retryAttempts: [
+				{
+					attempt: 1,
+					attemptId: "prior-attempt",
+					status: "failed",
+					duration: 1,
+					attachments: [
+						{
+							name: "log",
+							path: "prior.txt",
+							contentType: "text/plain",
+							attachmentId: "prior-ref",
+						},
+					],
+				},
+			],
+			attachments: [
+				{
+					name: "log",
+					path: "final.txt",
+					contentType: "text/plain",
+					attachmentId: "final-ref",
+				},
+			],
+		});
+		const directory = fs.mkdtempSync(
+			path.join(os.tmpdir(), "mattermost-parse-"),
+		);
+		let parsed: CtrfReport;
+		try {
+			const file = path.join(directory, "report.json");
+			fs.writeFileSync(file, JSON.stringify(report));
+			parsed = parseCtrfFile(file);
+			expect(parsed).toEqual(report);
+		} finally {
+			fs.rmSync(directory, { recursive: true, force: true });
+		}
+		const before = structuredClone(parsed);
+		const message = formatResultsMessage(parsed) as {
 			summary: string;
 			themeColor: string;
 			sections: Array<{ facts?: Array<{ name: string; value?: string }> }>;
 		};
+
+		expect(message).toEqual(formatResultsMessage(original));
+		expect(formatFailedTestsMessage(parsed)).toEqual(
+			formatFailedTestsMessage(original),
+		);
+		expect(formatFlakyTestsMessage(parsed)).toEqual(
+			formatFlakyTestsMessage(original),
+		);
+		expect(formatResultsAdaptiveCard(parsed)).toEqual(
+			formatResultsAdaptiveCard(original),
+		);
+		expect(
+			formatAiSummaryForTest(
+				parsed.results.tests[1],
+				parsed.results.environment ?? {},
+			),
+		).toEqual(
+			formatAiSummaryForTest(
+				original.results.tests[1],
+				original.results.environment ?? {},
+			),
+		);
+		expect(parsed).toEqual(before);
 
 		expect(message.summary).toBe("CTRF Test Results");
 		expect(message.themeColor).toBe("FF0000");
