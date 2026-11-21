@@ -49,7 +49,6 @@ Your contributions are sincerely appreciated. We want to make contributing to th
 
 Thank you for your interest in contributing
 
-
 ## TypeScript toolchain
 
 The `tsc` command uses native TypeScript 7.0.2 through the exact
